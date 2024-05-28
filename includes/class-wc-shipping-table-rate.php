@@ -1376,21 +1376,24 @@ class WC_Shipping_Table_Rate extends WC_Shipping_Method {
 			return;
 		}
 
-		add_action( 'woocommerce_settings_shipping', function () {
+		add_action(
+			'woocommerce_settings_shipping',
+			function () {
 
-			$message = sprintf(
+				$message = sprintf(
 				/* translators: %s: message */
-				'<div class="notice notice-warning inline"><p><strong>%s</strong></p></div>',
-				esc_html__(
-					'You have overlapping shipping rates defined, which may offer multiple options for the same criteria at checkout. If this is not your intention please review and adjust your rates and verify it on the cart/checkout pages.',
-					'woocommerce-table-rate-shipping'
-				)
-			);
+					'<div class="notice notice-warning inline"><p><strong>%s</strong></p></div>',
+					esc_html__(
+						'You have overlapping shipping rates defined, which may offer multiple options for the same criteria at checkout. If this is not your intention please review and adjust your rates and verify it on the cart/checkout pages.',
+						'woocommerce-table-rate-shipping'
+					)
+				);
 
-			echo wp_kses_post( $message );
-		}, 0 );
+				echo wp_kses_post( $message );
+			},
+			0
+		);
 
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
-
 }

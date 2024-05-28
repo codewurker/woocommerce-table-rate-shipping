@@ -29,7 +29,36 @@ class WC_Table_Rate_Shipping {
 		add_filter( 'site_transient_update_plugins', array( $this, 'filter_out_trs' ) );
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 		add_action( 'before_woocommerce_init', array( $this, 'declare_hpos_compatibility' ) );
+		add_action( 'woocommerce_blocks_loaded', array( $this, 'register_blocks_integration' ) );
+		add_action( 'woocommerce_blocks_loaded', array( $this, 'extend_store_api' ) );
 		register_activation_hook( WC_TABLE_RATE_SHIPPING_MAIN_FILE, array( $this, 'install' ) );
+	}
+
+	/**
+	 * Register blocks integration.
+	 */
+	public function register_blocks_integration() {
+		require_once WC_TABLE_RATE_SHIPPING_MAIN_ABSPATH . 'includes/class-blocks-integration.php';
+		add_action(
+			'woocommerce_blocks_cart_block_registration',
+			function ( $integration_registry ) {
+				$integration_registry->register( new Blocks_Integration() );
+			}
+		);
+		add_action(
+			'woocommerce_blocks_checkout_block_registration',
+			function ( $integration_registry ) {
+				$integration_registry->register( new Blocks_Integration() );
+			}
+		);
+	}
+
+	/**
+	 * Extend the store API.
+	 */
+	public function extend_store_api() {
+		require_once WC_TABLE_RATE_SHIPPING_MAIN_ABSPATH . 'includes/class-store-api-extension.php';
+		Store_API_Extension::init();
 	}
 
 	/**

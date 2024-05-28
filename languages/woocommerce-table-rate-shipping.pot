@@ -2,10 +2,10 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Table Rate Shipping 3.1.9\n"
+"Project-Id-Version: WooCommerce Table Rate Shipping 3.2.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/woocommerce-table-rate-shipping\n"
-"POT-Creation-Date: 2024-04-15 19:47:30+00:00\n"
+"POT-Creation-Date: 2024-05-27 19:14:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,6 +31,14 @@ msgstr ""
 #: includes/class-helpers.php:112
 #. translators: %d is row ID.
 msgid "Min value is overlapping with max value from row %d."
+msgstr ""
+
+#: includes/class-store-api-extension.php:87
+msgid "Abort messages from Table Rate Shipping."
+msgstr ""
+
+#: includes/class-store-api-extension.php:93
+msgid "Current package hashes."
 msgstr ""
 
 #: includes/class-wc-shipping-table-rate-privacy.php:20
@@ -220,7 +228,7 @@ msgstr ""
 msgid "Class Priorities"
 msgstr ""
 
-#: includes/class-wc-shipping-table-rate.php:1384
+#: includes/class-wc-shipping-table-rate.php:1386
 #. translators: %s: message
 msgid ""
 "You have overlapping shipping rates defined, which may offer multiple "
@@ -229,48 +237,48 @@ msgid ""
 "pages."
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:138
+#: includes/class-wc-table-rate-shipping.php:167
 msgid "View Documentation"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:138
+#: includes/class-wc-table-rate-shipping.php:167
 msgid "Docs"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:147
+#: includes/class-wc-table-rate-shipping.php:176
 msgid "Visit Premium Customer Support Forum"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:147
+#: includes/class-wc-table-rate-shipping.php:176
 msgid "Premium Support"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:167
+#: includes/class-wc-table-rate-shipping.php:196
 msgid "Order"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:168
+#: includes/class-wc-table-rate-shipping.php:197
 msgid "Item"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:169
+#: includes/class-wc-table-rate-shipping.php:198
 msgid "Line Item"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:170
+#: includes/class-wc-table-rate-shipping.php:199
 #: includes/functions-admin.php:167
 msgid "Class"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:171
+#: includes/class-wc-table-rate-shipping.php:200
 msgid "Delete the selected rates?"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:172
+#: includes/class-wc-table-rate-shipping.php:201
 msgid "Duplicate the selected rates?"
 msgstr ""
 
-#: includes/class-wc-table-rate-shipping.php:221
+#: includes/class-wc-table-rate-shipping.php:250
 #. translators: %s: WooCommerce link
 msgid "WooCommerce Table Rate Shipping requires %s to be installed and active."
 msgstr ""

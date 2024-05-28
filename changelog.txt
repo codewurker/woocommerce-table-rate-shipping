@@ -1,5 +1,8 @@
 *** Table Rate Shipping Changelog ***
 
+2024-05-27 - version 3.2.0
+* Add - Abort messages compatibility with cart and checkout blocks.
+
 2024-04-15 - version 3.1.9
 * Fix - Notice is displayed when rate minimum and rate maximum is equal.
 
