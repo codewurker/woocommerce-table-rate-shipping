@@ -1,5 +1,8 @@
 *** Table Rate Shipping Changelog ***
 
+2024-06-12 - version 3.2.1
+* Fix - Bug causing UI to scroll up and display a 404 error when adding table rates.
+
 2024-05-27 - version 3.2.0
 * Add - Abort messages compatibility with cart and checkout blocks.
 
