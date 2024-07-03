@@ -1,5 +1,8 @@
 *** Table Rate Shipping Changelog ***
 
+2024-07-02 - version 3.2.2
+* Tweak - WordPress 6.6 and WooCommerce 9.0 compatibility.
+
 2024-06-12 - version 3.2.1
 * Fix - Bug causing UI to scroll up and display a 404 error when adding table rates.
 
