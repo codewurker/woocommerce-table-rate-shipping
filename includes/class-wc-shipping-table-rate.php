@@ -1170,6 +1170,37 @@ class WC_Shipping_Table_Rate extends WC_Shipping_Method {
 	}
 
 	/**
+	 * Convert the product price to the base currency using WooCommerce Payments Multi-Currency.
+	 *
+	 * @param float $total_price Total product price.
+	 * @return float  Converted price in base currency.
+	 */
+	private function maybe_convert_to_base_currency( $total_price ) {
+		if ( ! class_exists( 'WCPay\MultiCurrency\MultiCurrency' ) ) {
+			return $total_price;
+		}
+
+		$multi_currency    = WCPay\MultiCurrency\MultiCurrency::instance();
+		$selected_currency = $multi_currency->get_selected_currency();
+		$base_currency     = $multi_currency->get_default_currency();
+
+		// If the selected currency is the same as the base currency, return the original price.
+		if ( $selected_currency->get_code() === $base_currency->get_code() ) {
+			return $total_price;
+		}
+
+		try {
+			$converted_price = $multi_currency->get_raw_conversion( (float) $total_price, $base_currency->get_code(), $selected_currency->get_code() );
+		} catch ( Exception $e ) {
+			// Log the error for better debugging.
+			wc_get_logger()->error( $e->getMessage(), array( 'source' => 'woocommerce-table-rate-shipping' ) );
+			return $total_price;
+		}
+
+		return $converted_price;
+	}
+
+	/**
 	 * Retrieve the product price from a line item.
 	 *
 	 * @param object $_product Product object.
@@ -1180,7 +1211,7 @@ class WC_Shipping_Table_Rate extends WC_Shipping_Method {
 	public function get_product_price( $_product, $qty = 1, $item = array() ) {
 
 		/**
-		 * Filter to let third party use the product price  with discounts or without discounts to calculate Min-Max conditions.
+		 * Filter to let third party use the product price with discounts or without discounts to calculate Min-Max conditions.
 		 *
 		 * @param boolean minmax_after_discount option value.
 		 * @param array Cart item.
@@ -1189,6 +1220,9 @@ class WC_Shipping_Table_Rate extends WC_Shipping_Method {
 		 */
 		if ( apply_filters( 'woocommerce_table_rate_compare_price_limits_after_discounts', wc_string_to_bool( $this->minmax_after_discount ), $item ) && isset( $item['line_total'] ) ) {
 			$row_base_price = $item['line_total'] + ( wc_string_to_bool( $this->minmax_with_tax ) && isset( $item['line_tax'] ) ? $item['line_tax'] : 0 );
+
+			// Convert to base currency if needed.
+			$row_base_price = $this->maybe_convert_to_base_currency( $row_base_price );
 
 			/**
 			 * Filter to let third party modify the row base price.
@@ -1203,6 +1237,9 @@ class WC_Shipping_Table_Rate extends WC_Shipping_Method {
 		} elseif ( isset( $item['line_subtotal'] ) ) {
 			$row_base_price = $item['line_subtotal'] + ( wc_string_to_bool( $this->minmax_with_tax ) && isset( $item['line_subtotal_tax'] ) ? $item['line_subtotal_tax'] : 0 );
 
+			// Convert to base currency if needed.
+			$row_base_price = $this->maybe_convert_to_base_currency( $row_base_price );
+
 			/**
 			 * Filter to let third party modify the row base price.
 			 *
@@ -1215,12 +1252,16 @@ class WC_Shipping_Table_Rate extends WC_Shipping_Method {
 			return apply_filters( 'woocommerce_table_rate_package_row_base_price', $row_base_price, $_product, $qty );
 		}
 
+		// Default price calculation.
 		$row_base_price = $_product->get_price() * $qty;
 
-		// From Issue #134 : Adding a compatibility product price for Measurement Price Calculator plugin by SkyVerge.
+		// From Issue #134: Adding a compatibility product price for Measurement Price Calculator plugin by SkyVerge.
 		if ( class_exists( 'WC_Measurement_Price_Calculator_Loader' ) && isset( $item['pricing_item_meta_data']['_price'] ) ) {
 			$row_base_price = $item['pricing_item_meta_data']['_price'] * $qty;
 		}
+
+		// Convert to base currency if needed.
+		$row_base_price = $this->maybe_convert_to_base_currency( $row_base_price );
 
 		/**
 		 * Filter to let third party modify the row base price.

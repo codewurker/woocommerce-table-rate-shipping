@@ -1,5 +1,8 @@
 *** Table Rate Shipping Changelog ***
 
+2024-07-16 - version 3.3.0
+* Add - Compatibility with WooPayments Multi-currency tool.
+
 2024-07-02 - version 3.2.2
 * Tweak - WordPress 6.6 and WooCommerce 9.0 compatibility.
 
