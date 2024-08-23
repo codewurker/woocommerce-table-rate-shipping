@@ -5,10 +5,17 @@
  * @package WooCommerce_Table_Rate_Shipping
  */
 
-defined( 'ABSPATH' ) || exit;
+namespace WooCommerce\Shipping\Table_Rate;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 use Automattic\WooCommerce\Blocks\Integrations\IntegrationInterface;
 
+/**
+ * Class for WooCommerce Blocks integration.
+ */
 class Blocks_Integration implements IntegrationInterface {
 
 	/**

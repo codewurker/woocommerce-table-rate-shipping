@@ -5,8 +5,6 @@
  * @package WooCommerce_Table_Rate_Shipping
  */
 
-require_once WC_TABLE_RATE_SHIPPING_MAIN_ABSPATH . 'includes/class-helpers.php';
-
 use WooCommerce\Shipping\Table_Rate\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {

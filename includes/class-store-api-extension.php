@@ -7,9 +7,16 @@
  * @package WooCommerce_Table_Rate_Shipping
  */
 
+namespace WooCommerce\Shipping\Table_Rate;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use Automattic\WooCommerce\StoreApi\StoreApi;
 use Automattic\WooCommerce\StoreApi\Schemas\ExtendSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CartSchema;
+use WC_Table_Rate_Shipping;
 
 /**
  * Store API Extension.

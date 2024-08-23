@@ -1,5 +1,8 @@
 *** Table Rate Shipping Changelog ***
 
+2024-08-22 - version 3.3.1
+* Tweak - Using namespace for new classes.
+
 2024-07-16 - version 3.3.0
 * Add - Compatibility with WooPayments Multi-currency tool.
 

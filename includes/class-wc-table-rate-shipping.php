@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use WooCommerce\Shipping\Table_Rate\Store_API_Extension;
+use WooCommerce\Shipping\Table_Rate\Blocks_Integration;
+
 /**
  * Main Class.
  */
@@ -103,6 +106,7 @@ class WC_Table_Rate_Shipping {
 			return;
 		}
 
+		require_once WC_TABLE_RATE_SHIPPING_MAIN_ABSPATH . 'includes/class-helpers.php';
 		include_once WC_TABLE_RATE_SHIPPING_MAIN_ABSPATH . 'includes/functions-ajax.php';
 		include_once WC_TABLE_RATE_SHIPPING_MAIN_ABSPATH . 'includes/functions-admin.php';
 
